@@ -1,3 +1,6 @@
+*** Settings ***
+Library           Selenium2Library
+
 *** Keywords ***
 login
     login001
@@ -8,5 +11,18 @@ print
 
 LOOPKEY
     [Arguments]    ${loops}
-    :FOR    ${g}    in range    ${loops}
+    : FOR    ${g}    IN RANGE    ${loops}
     \    log    ${g}
+
+baidu-search
+    [Arguments]    ${search}    ${result}
+    open browser    http://www.baidu.com    Chrome
+    maximize Browser window
+    sleep    3
+    input text    id=kw    ${search}
+    click button    id=su
+    sleep    3
+    ${title}    get title
+    log    ${title}
+    should contain    ${title}    ${result}
+    close browser

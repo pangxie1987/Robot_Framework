@@ -1,0 +1,10 @@
+*** Settings ***
+Resource          KeyWords.txt
+Library           Selenium2Library
+
+*** Test Cases ***
+TestCase001
+    baidu-search    太阳    太阳_百度搜索
+
+TestCase002
+    open browser    http://www.baidu.com    Chrome

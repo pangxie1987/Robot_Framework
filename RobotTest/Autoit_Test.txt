@@ -1,0 +1,4 @@
+*** Settings ***
+Library           AutoItLbrary
+
+*** Test Cases ***

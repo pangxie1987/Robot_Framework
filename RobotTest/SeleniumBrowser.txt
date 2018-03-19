@@ -4,5 +4,15 @@ Library           Selenium2Library
 *** Test Cases ***
 OpenBR
     open browser    http://www.baidu.com/    Chrome
+    maximize Browser window
+    ${title}    get title
+    log    process-browser
+    should contain    ${title}    百度一下
     input text    kw    RobotFramework自动化测试
     click button    su
+    get title
+    #close browser
+
+Case02
+    input text    xpath=//input[@id='kw']    自动化测试
+    click button    xpath=//input[@id='su']
