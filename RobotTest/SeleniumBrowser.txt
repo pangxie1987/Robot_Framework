@@ -1,0 +1,8 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+OpenBR
+    open browser    http://www.baidu.com/    Chrome
+    input text    kw    RobotFramework自动化测试
+    click button    su

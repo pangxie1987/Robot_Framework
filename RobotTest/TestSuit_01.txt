@@ -1,0 +1,67 @@
+*** Settings ***
+Library           Screenshot
+Library           Selenium2Library
+Resource          KeyWords.txt    # 自定义关键字
+
+*** Variables ***
+${hi}             欢迎使用RobotFramework自定义变量功能
+@{students}       张三    李四    王
+
+*** Test Cases ***
+Case01
+    [Documentation]    www.baidu.com
+    log    hello
+
+Case02
+    log    nihao
+
+Case03
+    [Tags]    variable
+    ${a}    Set variable    100
+    log    ${a}
+
+Case04
+    ${b}    Catenate    hello    world
+    log    ${b}
+
+Case05
+    ${abc}    Create list    a    b    c
+    log    ${abc}
+
+Case06
+    ${t}    get time    helloword
+    log    ${t}
+
+Case07
+    [Tags]    variable
+    ${point}    Set variable    55
+    run keyword if    ${point}>90    log    优秀
+    ...    ELSE IF    ${point}>=70    log    一般
+    ...    ELSE IF    ${point}>=60    log    及格
+    ...    ELSE IF    ${point}<60    log    不及格
+
+Case08
+    #Evalueate用法，调用python自带的方法
+    ${c}    Evaluate    random.randint(1000,5000)    random
+    Log    ${c}
+
+Case09
+    # Evaluate    Scree@nshot
+    Take Screenshot
+
+Case10
+    log    小张 ${hi}$
+
+Case11
+    : FOR    ${k}    IN    @{students}
+    \    log    ${k}
+
+Case12
+    LOOP    8
+    LOOPKEY    5
+
+*** Keywords ***
+LOOP
+    [Arguments]    ${numbers}    #定义一个 LOOP循环
+    : FOR    ${i}    IN RANGE    ${numbers}
+    \    log    ${i}

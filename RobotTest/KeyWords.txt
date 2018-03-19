@@ -1,0 +1,12 @@
+*** Keywords ***
+login
+    login001
+
+logout
+
+print
+
+LOOPKEY
+    [Arguments]    ${loops}
+    :FOR    ${g}    in range    ${loops}
+    \    log    ${g}
