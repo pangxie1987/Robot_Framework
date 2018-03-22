@@ -1,0 +1,6 @@
+*** Settings ***
+Library           DatabaseLibrary
+
+*** Test Cases ***
+TestCase001
+    connect to database using custom params    cx_Oracle    'core','core','10.243.140.119:1521/itstest'

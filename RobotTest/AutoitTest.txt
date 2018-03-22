@@ -1,0 +1,33 @@
+*** Settings ***
+Library           AutoItLibrary
+Library           Selenium2Library
+Library           os
+
+*** Test Cases ***
+Calc
+    run    calc.exe
+    Wait For Active Window    计算器
+    ControlClick    计算器    \    Button3
+    ControlClick    计算器    \    Button23
+    ControlClick    计算器    \    Button9
+    ControlClick    计算器    \    Button28
+    Sleep    2
+    ${resl}    wingettext    计算器
+    log    ${resl}
+
+uploadfile
+    open Browser    file:///C:/WorkDay/Code/Python/RobotFramework/AutoIt/upload.html    Chrome    #打开浏览器
+    click element    name=file    #开发上传附件
+    sleep    6
+    Evaluate    os.system("C:\\WorkDay\\Code\\Python\\RobotFramework\\AutoIt\\csendupfile.exe")    os    #调用Auto程序
+    sleep    3
+    close browser
+
+Calc_send
+    run    calc.exe
+    wait for active window    计算器
+    #send    12345
+    #send    {F1}
+    send    4{+}5{=}
+    sleep    3
+    winclose    计算器

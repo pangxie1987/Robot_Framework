@@ -1,0 +1,16 @@
+*** Settings ***
+Library           AutoItLibrary
+Library           os
+
+*** Test Cases ***
+login
+    Evaluate    os.system("C:\itsclient")    os    #引入程序所在的目录
+    run    C:\\itsclient\\ITSClient.bat    #无法直接启动，通过目录下创建的bat进行启动
+    sleep    5
+    ${name}    control get text    登录    \    WindowsForms10.EDIT.app.0.29531c8_r13_ad11    #获取用户名
+    log    ${name}
+    controlfocus    登录    \    WindowsForms10.EDIT.app.0.29531c8_r13_ad12    #获取密码框，下一步输入密码
+    send    kingstar
+    sleep    1
+    controlclick    登录    \    WindowsForms10.BUTTON.app.0.29531c8_r13_ad12    #登录
+    sleep    3
