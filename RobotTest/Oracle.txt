@@ -2,5 +2,16 @@
 Library           DatabaseLibrary
 
 *** Test Cases ***
-TestCase001
+connect
     connect to database using custom params    cx_Oracle    'core','core','10.243.140.119:1521/itstest'
+
+select001
+    connect to database using custom params    cx_Oracle    'core','core','10.243.140.117:1521/xe'    #连接数据库
+    sleep    5
+    Execute Sql String    select * from tb_user where user_id='50000009'    \    #查询
+    @{queryResults}    Query    select * from tb_user where user_id='50000009'
+    log many    @{queryResults}    \    #显示查询结果
+    #${rowCount}    row count    select * from tb_user    #显示查询结果数量
+    #log    ${rowCount}
+    Execute Sql Script    ${CURDIR}\\testscript\\test.sql    #执行sql脚本
+    disconnect from database    #断开数据库连接
